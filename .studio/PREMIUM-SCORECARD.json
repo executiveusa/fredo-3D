@@ -1,0 +1,22 @@
+{
+  "threshold": 8.5,
+  "minimum_axis_score": 7.0,
+  "p0_blockers": [],
+  "scores": {
+    "krug_clarity": null,
+    "art_first_storytelling": null,
+    "visual_hierarchy": null,
+    "typography_and_spacing": null,
+    "cinematic_restraint": null,
+    "gallery_commerce_clarity": null,
+    "mobile_quality": null,
+    "accessibility": null,
+    "performance": null,
+    "spanish_language_quality": null,
+    "trust_and_factual_integrity": null,
+    "anti_slop_originality": null
+  },
+  "reviewer": null,
+  "reviewed_at": null,
+  "notes": ""
+}
