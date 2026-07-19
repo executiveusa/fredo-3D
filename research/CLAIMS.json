@@ -1,0 +1,152 @@
+[
+  {
+    "claim": "Fredo = Wladimir Inostroza, Chilean artist; persona split explained by TVN",
+    "sourceUrl": "https://www.24horas.cl/tendencias/espectaculosycultura/fredo-art-el-dibujo-que-busca-ser-real--493798",
+    "sourceTitle": "Fredo Art: el dibujo que busca ser real",
+    "sourceDate": "2013-01-31",
+    "accessedAt": "2026-07-19",
+    "confidence": "verified",
+    "publishable": true,
+    "notes": "3-0 adversarial vote + direct fetch"
+  },
+  {
+    "claim": "Instagram @fredosis.art display name is 'Wladimir Inostroza'",
+    "sourceUrl": "https://www.instagram.com/fredosis.art/",
+    "sourceTitle": "Instagram profile",
+    "sourceDate": null,
+    "accessedAt": "2026-07-19",
+    "confidence": "verified",
+    "publishable": true,
+    "notes": "3-0 vote, live fetch 2026-07-19"
+  },
+  {
+    "claim": "Behance 'fredosis' = Wladimir Inostroza, Chile; created 2018-06-15; 12 projects incl 'Anamorfosis'",
+    "sourceUrl": "https://www.behance.net/fredosis",
+    "sourceTitle": "Behance profile",
+    "sourceDate": "2018-06-15",
+    "accessedAt": "2026-07-19",
+    "confidence": "verified",
+    "publishable": true,
+    "notes": "3-0 vote, live fetch"
+  },
+  {
+    "claim": "Earliest located press: 2010-07-19 BioBioChile, 'Fredo', 17, Santiago, 3D graphite; Uphaa pickup; blog drawingopenmythirdeye.blogspot.com",
+    "sourceUrl": "https://www.biobiochile.cl/noticias/2010/07/19/adolescente-chileno-crea-impresionantes-dibujos-3d-con-lapiz-grafito.shtml",
+    "sourceTitle": "Adolescente chileno crea impresionantes dibujos 3D con lapiz grafito",
+    "sourceDate": "2010-07-19",
+    "accessedAt": "2026-07-19",
+    "confidence": "verified",
+    "publishable": true,
+    "notes": "direct fetch 2026-07-19"
+  },
+  {
+    "claim": "My Modern Met feature 2010-11-10 by Eugene Kim with direct interview quotes; links fredoart.deviantart.com + old FB page",
+    "sourceUrl": "https://mymodernmet.com/unbelievable-3d-drawings-16/",
+    "sourceTitle": "Unbelievable 3D Drawings by a 17-Year-Old",
+    "sourceDate": "2010-11-10",
+    "accessedAt": "2026-07-19",
+    "confidence": "verified",
+    "publishable": true,
+    "notes": "direct fetch 2026-07-19"
+  },
+  {
+    "claim": "By early 2013 covered by outlets in Russia, Japan, The Sun, Daily Mail (per TVN)",
+    "sourceUrl": "https://www.24horas.cl/tendencias/espectaculosycultura/fredo-art-el-dibujo-que-busca-ser-real--493798",
+    "sourceTitle": "24horas TVN",
+    "sourceDate": "2013-01-31",
+    "accessedAt": "2026-07-19",
+    "confidence": "verified",
+    "publishable": true,
+    "notes": "2-0 vote; secondhand attribution — phrase as 'according to TVN'"
+  },
+  {
+    "claim": "In Jan 2013 was psychology student at Universidad Autonoma, age 22",
+    "sourceUrl": "https://www.24horas.cl/tendencias/espectaculosycultura/fredo-art-el-dibujo-que-busca-ser-real--493798",
+    "sourceTitle": "24horas TVN",
+    "sourceDate": "2013-01-31",
+    "accessedAt": "2026-07-19",
+    "confidence": "verified",
+    "publishable": true,
+    "notes": "3-0 vote; but conflicts with 2010 age-17 sources — do not derive birth year"
+  },
+  {
+    "claim": "TwistedSifter 2013-08-05 anamorphic feature; artist website byfredo.com",
+    "sourceUrl": "https://twistedsifter.com/2013/08/anamorphic-3d-pencil-drawings-by-fredo/",
+    "sourceTitle": "Anamorphic 3D Pencil Drawings by Fredo",
+    "sourceDate": "2013-08-05",
+    "accessedAt": "2026-07-19",
+    "confidence": "verified",
+    "publishable": true,
+    "notes": "direct fetch 2026-07-19"
+  },
+  {
+    "claim": "Serious about art since ~2005 as young teen",
+    "sourceUrl": "https://twistedsifter.com/2013/08/anamorphic-3d-pencil-drawings-by-fredo/",
+    "sourceTitle": "TwistedSifter",
+    "sourceDate": "2013-08-05",
+    "accessedAt": "2026-07-19",
+    "confidence": "probable",
+    "publishable": false,
+    "notes": "secondhand paraphrase of MMM interview"
+  },
+  {
+    "claim": "Murals, ceilings, ground pieces incl Plaza de Armas Santiago",
+    "sourceUrl": "https://mott.pe/noticias/los-mejores-dibujos-artisticos-anamorficos-3d-de-la-historia/",
+    "sourceTitle": "Mott.pe",
+    "sourceDate": null,
+    "accessedAt": "2026-07-19",
+    "confidence": "probable",
+    "publishable": false,
+    "notes": "single blog source; confirm with Fredo before publishing"
+  },
+  {
+    "claim": "2013-04-13 journalist video feature on YouTube",
+    "sourceUrl": "https://www.youtube.com/watch?v=oWxVTa4Kak0",
+    "sourceTitle": "Fredo Art el joven prodigio chileno del arte en 3D",
+    "sourceDate": "2013-04-13",
+    "accessedAt": "2026-07-19",
+    "confidence": "probable",
+    "publishable": false,
+    "notes": "verification votes errored (session limit)"
+  },
+  {
+    "claim": "Influences: Escher, Rembrandt, Beksinski, Arcimboldo, Alex Grey",
+    "sourceUrl": "https://mymodernmet.com/unbelievable-3d-drawings-16/",
+    "sourceTitle": "My Modern Met",
+    "sourceDate": "2010-11-10",
+    "accessedAt": "2026-07-19",
+    "confidence": "verified",
+    "publishable": true,
+    "notes": "direct fetch, direct quote"
+  },
+  {
+    "claim": "isla.de.plastico book: NO web-verifiable title/publisher/ISBN/purchase channel; Instagram account exists, bio login-walled",
+    "sourceUrl": "https://www.instagram.com/isla.de.plastico/",
+    "sourceTitle": "Instagram",
+    "sourceDate": null,
+    "accessedAt": "2026-07-19",
+    "confidence": "uncertain",
+    "publishable": false,
+    "notes": "NEEDS FREDO INPUT. Do not publish book claims beyond 'author and illustrator' (owner-supplied) until documented"
+  },
+  {
+    "claim": "Birth year / current age",
+    "sourceUrl": "",
+    "sourceTitle": null,
+    "sourceDate": null,
+    "accessedAt": "2026-07-19",
+    "confidence": "uncertain",
+    "publishable": false,
+    "notes": "sources conflict (17 in 2010 vs 22 in 2013). Never publish age or birth year without Fredo confirmation"
+  },
+  {
+    "claim": "Exhibitions, awards, tattoo/clothing crossovers",
+    "sourceUrl": "",
+    "sourceTitle": null,
+    "sourceDate": null,
+    "accessedAt": "2026-07-19",
+    "confidence": "uncertain",
+    "publishable": false,
+    "notes": "none verifiably located as of 2026-07-19"
+  }
+]
