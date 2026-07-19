@@ -1,0 +1,24 @@
+# Dependencies / builds
+node_modules/
+.next/
+dist/
+build/
+coverage/
+
+# Secrets / local environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Local studio evidence that should not be committed by default
+.studio/logs/
+.studio/rollback/
+.studio/reports/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
