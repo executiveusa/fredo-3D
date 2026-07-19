@@ -1,0 +1,14 @@
+{
+  "tool_profile": "core",
+  "compact_schemas": true,
+  "extra_ignore_patterns": [
+    "node_modules/**",
+    ".next/**",
+    "dist/**",
+    "build/**",
+    "coverage/**",
+    "public/generated/**",
+    "artifacts/**",
+    ".studio/**"
+  ]
+}
