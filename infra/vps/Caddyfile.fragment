@@ -55,7 +55,10 @@ cms.fredo3d.com {
 	}
 	reverse_proxy 127.0.0.1:3031
 	log {
-		output file /var/log/caddy/fredo3d-cms.log { roll_size 5mb; roll_keep 3 }
+		output file /var/log/caddy/fredo3d-cms.log {
+			roll_size 5mb
+			roll_keep 3
+		}
 		format console
 	}
 }
