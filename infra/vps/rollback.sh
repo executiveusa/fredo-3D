@@ -88,9 +88,9 @@ smoke() {
   local code; code="$(curl --max-time 10 -s -o /dev/null -w '%{http_code}' "$1" || echo 000)"
   if [[ "$code" =~ ^(200|307|308)$ ]]; then log "  PASS $1 -> $code"; else log "  FAIL $1 -> $code"; SMOKE_OK=0; fi
 }
-smoke "http://127.0.0.1:3000/"
-smoke "http://127.0.0.1:3000/es"
-smoke "http://127.0.0.1:3000/sitemap.xml"
+smoke "http://127.0.0.1:3030/"
+smoke "http://127.0.0.1:3030/es"
+smoke "http://127.0.0.1:3030/sitemap.xml"
 
 # Record anchor
 echo "$TARGET" > "$LOG_DIR/.last_good_sha"

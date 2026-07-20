@@ -65,10 +65,12 @@ services:
       ASSISTANT_PROVIDER: local
     networks:
       - fredo3d-network
-    # Loopback-only mapping for direct local curl tests on the VPS.
-    # Public traffic enters via Coolify's proxy on the fredo3d-network.
+    # Loopback-only mapping for direct curl tests on the VPS.
+    # Host port 3030 chosen to avoid collision with other services on this shared box
+    # (port 3000/3001 are taken by supabase-studio on this VPS).
+    # Public traffic enters via the host Caddy proxy -> 127.0.0.1:3030.
     ports:
-      - "127.0.0.1:3000:3000"
+      - "127.0.0.1:3030:3000"
     healthcheck:
       test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
       interval: 30s
@@ -99,7 +101,7 @@ services:
     networks:
       - fredo3d-network
     ports:
-      - "127.0.0.1:3001:80"
+      - "127.0.0.1:3031:80"
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://127.0.0.1/"]
       interval: 30s

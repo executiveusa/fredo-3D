@@ -52,14 +52,15 @@ probe() {
 }
 
 log "-- local probes --"
-probe "http://127.0.0.1:3000/"            "200|307|308"
-probe "http://127.0.0.1:3000/es"          "200"
-probe "http://127.0.0.1:3000/en"          "200"
-probe "http://127.0.0.1:3000/es/galeria"  "200"
-probe "http://127.0.0.1:3000/es/blog"     "200"
-probe "http://127.0.0.1:3000/sitemap.xml" "200"
-probe "http://127.0.0.1:3000/robots.txt"  "200"
-probe "http://127.0.0.1:3001/"            "200"
+# Host ports 3030/3031 chosen to avoid collision with supabase-studio (3001) on shared VPS.
+probe "http://127.0.0.1:3030/"            "200|307|308"
+probe "http://127.0.0.1:3030/es"          "200"
+probe "http://127.0.0.1:3030/en"          "200"
+probe "http://127.0.0.1:3030/es/galeria"  "200"
+probe "http://127.0.0.1:3030/es/blog"     "200"
+probe "http://127.0.0.1:3030/sitemap.xml" "200"
+probe "http://127.0.0.1:3030/robots.txt"  "200"
+probe "http://127.0.0.1:3031/"            "200"
 
 # ---- 3. Public HTTPS probes (opt-in) --------------------------------------
 if [[ "${1:-}" == "--public" ]]; then

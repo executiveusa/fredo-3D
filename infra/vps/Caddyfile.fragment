@@ -1,19 +1,19 @@
 # =============================================================================
-# FREDO 3D — Caddy drop-in fragment
+# FREDO 3D — Caddy drop-in fragment (HOST Caddy edition)
 # -----------------------------------------------------------------------------
-# Use this ONLY if you are running your own Caddy (not Coolify's proxy) on the
-# VPS, and you want to add Fredo to an existing Caddyfile without rewriting it.
+# Tailored for srv1099662.hstgr.cloud (Hostinger VPS, 31.220.58.212):
+#   - Caddy v2.11.4 runs ON THE HOST (systemd unit: caddy.service), not in Docker.
+#   - Existing site block at /etc/caddy/Caddyfile serves api.thepaulieffect.com.
+#   - Fredo containers publish to 127.0.0.1:3030 (web) and 127.0.0.1:3031 (cms-hold).
 #
-# Usage from your main Caddyfile:
+# Install:
+#   1. cp Caddyfile.fragment /etc/caddy/fredo3d.Caddyfile
+#   2. echo 'import /etc/caddy/fredo3d.Caddyfile' >> /etc/caddy/Caddyfile
+#   3. caddy validate --config /etc/caddy/Caddyfile
+#   4. systemctl reload caddy
 #
-#   import /opt/the-pauli-effect/clients/fredo3d/config/Caddyfile.fragment
-#
-# Note about containers: this fragment references containers by name
-# (fredo3d-web, fredo3d-cms-hold). For Caddy to reach them, Caddy must be
-# attached to the `fredo3d-network` docker network. If Caddy runs on the host
-# (not in docker), use the loopback mappings instead:
-#     fredo3d-web:3000  -> 127.0.0.1:3000
-#     fredo3d-cms-hold:80 -> 127.0.0.1:3001
+# (If you ever run Caddy inside Docker attached to fredo3d-network, swap the
+#  127.0.0.1 loopback addresses below for fredo3d-web:3000 / fredo3d-cms-hold:80.)
 # =============================================================================
 
 fredo3d.com {
@@ -26,12 +26,12 @@ fredo3d.com {
 		X-Frame-Options "SAMEORIGIN"
 		-Server
 	}
-	reverse_proxy fredo3d-web:3000 {
+	reverse_proxy 127.0.0.1:3030 {
 		header_up X-Forwarded-Host {host}
 		header_up X-Real-IP {remote_host}
 	}
 	log {
-		output file /data/fredo3d/logs/caddy-fredo3d.log {
+		output file /var/log/caddy/fredo3d.log {
 			roll_size 10mb
 			roll_keep 7
 		}
@@ -47,15 +47,15 @@ www.fredo3d.com {
 	redir https://fredo3d.com{uri} permanent
 }
 
-# cms.fredo3d.com — v1 holding page. Swap target to fredo3d-content:3001 in v2.
+# cms.fredo3d.com — v1 holding page. In v2, change target to 127.0.0.1:<payload-port>.
 cms.fredo3d.com {
 	header {
 		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
 		X-Content-Type-Options "nosniff"
 	}
-	reverse_proxy fredo3d-cms-hold:80
+	reverse_proxy 127.0.0.1:3031
 	log {
-		output file /data/fredo3d/logs/caddy-cms.log { roll_size 5mb; roll_keep 3 }
+		output file /var/log/caddy/fredo3d-cms.log { roll_size 5mb; roll_keep 3 }
 		format console
 	}
 }
