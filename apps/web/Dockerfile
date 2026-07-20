@@ -62,4 +62,7 @@ EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
   CMD node -e "fetch('http://127.0.0.1:'+process.env.PORT+'/').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
 
-CMD ["node", "apps/web/server.js"]
+# Next.js standalone output emits server.js at the standalone root (/app),
+# NOT at the original monorepo path /app/apps/web/server.js — the standalone
+# tree is flattened during the build. Verified: /app/server.js exists.
+CMD ["node", "server.js"]
