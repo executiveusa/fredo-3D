@@ -1,0 +1,25 @@
+<!doctype html><html lang='es'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>FREDO 3D — Arquitectura de despliegue</title><style>body{font-family:Georgia,serif;max-width:860px;margin:2rem auto;padding:0 1.2rem;color:#1a1a1a;line-height:1.6;background:#faf8f4}
+h1{font-size:1.9rem;border-bottom:3px solid #1a1a1a;padding-bottom:.4rem}h2{margin-top:2rem;font-size:1.3rem}
+table{border-collapse:collapse;width:100%;font-size:.92rem}td,th{border:1px solid #bbb;padding:.45rem .6rem;text-align:left;vertical-align:top}
+.tag{display:inline-block;background:#1a1a1a;color:#faf8f4;padding:.1rem .5rem;font-size:.75rem;letter-spacing:.08em}
+.warn{background:#fff3e0;border-left:4px solid #e65100;padding:.6rem .9rem}
+.ok{background:#e8f5e9;border-left:4px solid #2e7d32;padding:.6rem .9rem}
+img{max-width:100%}code{background:#eee;padding:.05rem .3rem}</style></head><body><h1>FREDO 3D — Arquitectura de despliegue</h1>
+<pre>
+                    INTERNET
+                       |
+          +------------+------------+
+       VERCEL                     VPS
+      apps/web              apps/content-studio
+   (cero secretos)         Payload CMS + PostgreSQL
+   modo static OK          admin protegido, API publica estrecha
+   modo payload (fase 2)   media, versiones, auditoria, MCP
+          +---- solo contenido publico ----+
+</pre>
+<h2>Regla de seguridad</h2><p>El frontend nunca recibe: credenciales de PostgreSQL, admin de Payload, claves MCP, secretos PayPal/Stripe/Printify, claves de IA. Ver <code>.env.example</code> por app.</p>
+<h2>Estado</h2><table>
+<tr><th>Pieza</th><th>Estado</th></tr>
+<tr><td>apps/web (Vercel)</td><td class='ok'>construido, compila con cero variables de entorno; listo para importar el repo en Vercel</td></tr>
+<tr><td>apps/content-studio (VPS)</td><td>plantillas de entorno listas; despliegue requiere acceso al VPS (fase 2)</td></tr>
+<tr><td>Dominio</td><td>fredo3d.com (decision Q3) — configurar DNS en Vercel al importar</td></tr>
+<tr><td>PopeBot + OmniRoute</td><td>especificado en docs/ASSISTANT-REQUIREMENTS.md; OmniRoute v3.8.49 extraido en vendor/ (fase Slice 9)</td></tr></table><p style='margin-top:3rem;color:#777;font-size:.8rem'>FREDO 3D · generado 2026-07-19 · verificado contra research/CLAIMS.json</p></body></html>
