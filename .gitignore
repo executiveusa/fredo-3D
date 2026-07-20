@@ -25,3 +25,8 @@ coverage/
 Thumbs.db
 .vscode/
 .idea/
+
+# Windows-reserved-name artifact created by `dir ... 2>nul` redirections.
+# Cannot be deleted by name on Windows; ignore so it never commits.
+nul
+**/nul

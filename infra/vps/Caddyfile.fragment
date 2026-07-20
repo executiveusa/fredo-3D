@@ -1,0 +1,61 @@
+# =============================================================================
+# FREDO 3D — Caddy drop-in fragment
+# -----------------------------------------------------------------------------
+# Use this ONLY if you are running your own Caddy (not Coolify's proxy) on the
+# VPS, and you want to add Fredo to an existing Caddyfile without rewriting it.
+#
+# Usage from your main Caddyfile:
+#
+#   import /opt/the-pauli-effect/clients/fredo3d/config/Caddyfile.fragment
+#
+# Note about containers: this fragment references containers by name
+# (fredo3d-web, fredo3d-cms-hold). For Caddy to reach them, Caddy must be
+# attached to the `fredo3d-network` docker network. If Caddy runs on the host
+# (not in docker), use the loopback mappings instead:
+#     fredo3d-web:3000  -> 127.0.0.1:3000
+#     fredo3d-cms-hold:80 -> 127.0.0.1:3001
+# =============================================================================
+
+fredo3d.com {
+	encode zstd gzip
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+		X-Frame-Options "SAMEORIGIN"
+		-Server
+	}
+	reverse_proxy fredo3d-web:3000 {
+		header_up X-Forwarded-Host {host}
+		header_up X-Real-IP {remote_host}
+	}
+	log {
+		output file /data/fredo3d/logs/caddy-fredo3d.log {
+			roll_size 10mb
+			roll_keep 7
+		}
+		format console
+	}
+}
+
+www.fredo3d.com {
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+		X-Content-Type-Options "nosniff"
+	}
+	redir https://fredo3d.com{uri} permanent
+}
+
+# cms.fredo3d.com — v1 holding page. Swap target to fredo3d-content:3001 in v2.
+cms.fredo3d.com {
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+		X-Content-Type-Options "nosniff"
+	}
+	reverse_proxy fredo3d-cms-hold:80
+	log {
+		output file /data/fredo3d/logs/caddy-cms.log { roll_size 5mb; roll_keep 3 }
+		format console
+	}
+}

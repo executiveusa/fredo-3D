@@ -1,0 +1,48 @@
+# Keep the Docker build context lean and secret-free.
+# This file lives at apps/web/.dockerignore; the build context is the repo root.
+
+# Node / build artifacts
+**/node_modules
+**/.next
+**/.turbo
+**/dist
+**/build
+**/out
+**/coverage
+
+# Logs and runtime
+**/*.log
+**/.npm
+**/.eslintcache
+
+# Secrets — never ship these into an image
+.env
+.env.*
+**/.env
+**/.env.*
+!.env.example
+!**/.env.example
+**/*.pem
+**/*.key
+**/secrets/
+
+# Studio evidence (local only)
+.studio/logs/
+.studio/rollback/
+.studio/reports/
+
+# VCS / editor / OS
+.git
+.gitignore
+.gitattributes
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Docs and design prototypes are not needed at runtime
+docs/
+design/
+research/
+artifacts/
+content/masters/

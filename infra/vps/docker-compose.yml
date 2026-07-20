@@ -1,0 +1,115 @@
+# =============================================================================
+# FREDO 3D — Production stack (self-hosted, Coolify-compatible)
+# -----------------------------------------------------------------------------
+# Owner:  THE PAULI EFFECT   |   Client: FREDO 3D (Wladimir Inostroza)
+# Domain: fredo3d.com        |   VPS:    31.220.58.212 (Hostinger KVM 2)
+#
+# Scope of THIS compose file (v1 — static-first, Payload deferred):
+#   - fredo3d-web        Next.js 15 standalone (public site)
+#   - fredo3d-cms-hold   Tiny static "cms coming soon" page for cms.fredo3d.com
+#
+# What is deliberately NOT here yet:
+#   - postgres / content-studio (Payload). apps/content-studio does not exist
+#     in the repo yet (only a .env.example). It will be added in v2 once built.
+#   - caddy. The VPS already runs Caddy (installed by Coolify). We do NOT
+#     start a competing reverse proxy. See Caddyfile for the drop-in import.
+#
+# Coexistence with Coolify:
+#   - Isolated network `fredo3d-network` (does not touch Coolify's networks).
+#   - No host port published on 80/443 (Coolify's proxy owns those).
+#   - Web published on 127.0.0.1:3000 only (loopback) for direct local tests;
+#     the public path is Coolify proxy -> fredo3d-web:3000 over the network.
+#
+# All secrets come from .env (chmod 600, never committed). See .env.example.
+# =============================================================================
+
+name: fredo3d
+
+# ---- Network: isolated from other Coolify-managed apps -----------------------
+networks:
+  fredo3d-network:
+    name: fredo3d-network
+    driver: bridge
+
+# ---- Volumes (web is stateless; cms-hold is stateless) -----------------------
+volumes:
+  fredo3d_media:
+    name: fredo3d_media
+    # Reserved for v2 (Payload media). Created now so the mount path is stable.
+  fredo3d_postgres_data:
+    name: fredo3d_postgres_data
+    # Reserved for v2 (Payload DB). Created now, unused, zero cost.
+
+services:
+  # ---- Public Next.js frontend --------------------------------------------
+  web:
+    build:
+      context: ../..
+      dockerfile: apps/web/Dockerfile
+    image: fredo3d-web:latest
+    container_name: fredo3d-web
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
+      HOSTNAME: "0.0.0.0"
+      # Public identity (safe; values also live in .env for single-source edits)
+      NEXT_PUBLIC_SITE_NAME: ${NEXT_PUBLIC_SITE_NAME:-FREDO 3D}
+      NEXT_PUBLIC_SITE_URL: ${PUBLIC_WEB_URL:-https://fredo3d.com}
+      NEXT_PUBLIC_DEFAULT_LOCALE: ${NEXT_PUBLIC_DEFAULT_LOCALE:-es}
+      NEXT_PUBLIC_SUPPORTED_LOCALES: ${NEXT_PUBLIC_SUPPORTED_LOCALES:-es,en}
+      NEXT_PUBLIC_WHATSAPP_NUMBER: ${NEXT_PUBLIC_WHATSAPP_NUMBER:-56993838223}
+      CONTENT_PROVIDER: static
+      PAYMENTS_PROVIDER: disabled
+      MERCH_PROVIDER: disabled
+      ASSISTANT_PROVIDER: local
+    networks:
+      - fredo3d-network
+    # Loopback-only mapping for direct local curl tests on the VPS.
+    # Public traffic enters via Coolify's proxy on the fredo3d-network.
+    ports:
+      - "127.0.0.1:3000:3000"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      start_period: 20s
+      retries: 3
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+    # Mark this service as available to Coolify's proxy network if attached.
+    labels:
+      - "fredo3d.role=web"
+      - "fredo3d.domain=fredo3d.com"
+
+  # ---- cms.fredo3d.com holding page (v1) ----------------------------------
+  # Honest placeholder. Payload CMS is not yet implemented in the repo.
+  # When apps/content-studio ships, replace this service with the real
+  # content-studio + postgres services (see DEPLOYMENT.md §v2).
+  cms-hold:
+    image: nginx:1.27-alpine
+    container_name: fredo3d-cms-hold
+    restart: unless-stopped
+    volumes:
+      - ./cms-hold/html:/usr/share/nginx/html:ro
+      - ./cms-hold/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    networks:
+      - fredo3d-network
+    ports:
+      - "127.0.0.1:3001:80"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    logging:
+      driver: json-file
+      options:
+        max-size: "5m"
+        max-file: "3"
+    labels:
+      - "fredo3d.role=cms-hold"
+      - "fredo3d.domain=cms.fredo3d.com"

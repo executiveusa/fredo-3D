@@ -1,0 +1,108 @@
+# =============================================================================
+# FREDO 3D — Caddy configuration
+# -----------------------------------------------------------------------------
+# VPS: 31.220.58.212, Ubuntu 24.04 with Coolify. Coolify ships its own Caddy
+# as the global reverse proxy (this is what answers 80/443 today). The safest
+# production path is to let Coolify's proxy own 80/443 and route to our
+# fredo3d-* containers by network name. Coolify's UI/server config should set:
+#
+#   fredo3d.com        -> http://fredo3d-web:3000
+#   www.fredo3d.com    -> redir https://fredo3d.com{uri} permanent
+#   cms.fredo3d.com    -> http://fredo3d-cms-hold:80   (v1 holding page)
+#
+# This file therefore provides TWO things:
+#   (A) `Caddyfile` — a complete standalone Caddyfile for a self-managed
+#       Caddy (used only if you ever replace Coolify's proxy with a direct
+#       `docker run caddy`). Kept for portability and disaster recovery.
+#   (B) `Caddyfile.fragment` — the equivalent block as a drop-in import for
+#       an existing Caddy, in case Coolify's proxy is replaced by a manual
+#       Caddy install on the same box.
+#
+# Automatic HTTPS: Caddy issues and renews Let's Encrypt certs for any
+# site block that names a real hostname. No manual cert management.
+# =============================================================================
+
+{
+	# Global options — sensible defaults for production.
+	email ops@fredo3d.com
+	# Rate limits are gentle; LE staging can be enabled during first cutover:
+	# acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
+	servers {
+		trusted_proxies static private_ranges
+	}
+}
+
+# ---------------------------------------------------------------------------
+# apex domain
+# ---------------------------------------------------------------------------
+fredo3d.com {
+	encode zstd gzip
+	import fredo_security_headers
+	import fredo_static_routes
+	reverse_proxy fredo3d-web:3000 {
+		header_up X-Forwarded-Host {host}
+		header_up X-Real-IP {remote_host}
+	}
+	log {
+		output file /data/fredo3d/logs/caddy-fredo3d.log {
+			roll_size 10mb
+			roll_keep 7
+		}
+		format console
+	}
+}
+
+# ---------------------------------------------------------------------------
+# www -> apex permanent redirect (SEO canonicalization)
+# ---------------------------------------------------------------------------
+www.fredo3d.com {
+	import fredo_security_headers
+	redir https://fredo3d.com{uri} permanent
+}
+
+# ---------------------------------------------------------------------------
+# cms — v1 holding page. When Payload ships, change target to fredo3d-content:3001
+# and remove the holding message from Caddyfile.fragment.
+# ---------------------------------------------------------------------------
+cms.fredo3d.com {
+	import fredo_security_headers
+	reverse_proxy fredo3d-cms-hold:80
+	log {
+		output file /data/fredo3d/logs/caddy-cms.log {
+			roll_size 5mb
+			roll_keep 3
+		}
+		format console
+	}
+}
+
+# ---------------------------------------------------------------------------
+# Shared snippets
+# ---------------------------------------------------------------------------
+(fredo_security_headers) {
+	header {
+		# Force HTTPS for one year once a browser has seen the site.
+		Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+		# MIME sniffing protection.
+		X-Content-Type-Options "nosniff"
+		# Hide Caddy/Next version where possible.
+		-Server
+		# Referrer policy: only send origin to same site.
+		Referrer-Policy "strict-origin-when-cross-origin"
+		# Lock down powerful APIs to self.
+		Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+		# Frame options: site is not a frame target.
+		X-Frame-Options "SAMEORIGIN"
+		# No CSP yet: must be tested against the live build before enabling,
+		# to avoid breaking inline Next.js scripts. See DEPLOYMENT.md §CSP.
+	}
+}
+
+(fredo_static_routes) {
+	# Next.js serves these from /public; let the app handle them.
+	# Explicitly listed so they are never accidentally shadowed by a proxy rule.
+	@static {
+		path /sitemap.xml /robots.txt /favicon.ico
+	}
+	reverse_proxy @static fredo3d-web:3000
+}
