@@ -94,8 +94,8 @@ docker restart fredo3d-web fredo3d-cms-hold
 That takes ~10 seconds. If it doesn't help, restart the whole stack:
 
 ```bash
-docker compose --env-file /opt/the-pauli-effect/clients/fredo3d/config/.env \
-  -f /opt/the-pauli-effect/clients/fredo3d/app/infra/vps/docker-compose.yml restart
+docker compose --env-file /opt/pauli-effect/clients/fredo3d/config/.env \
+  -f /opt/pauli-effect/clients/fredo3d/app/infra/vps/docker-compose.yml restart
 ```
 
 If **Caddy/Coolify** is the problem (HTTPS not working, 502s everywhere), don't restart it blindly — call THE PAULI EFFECT first; Coolify manages other apps on the same box.
@@ -107,16 +107,16 @@ If **Caddy/Coolify** is the problem (HTTPS not working, 502s everywhere), don't 
 docker logs --tail 100 fredo3d-web
 
 # Last deploy log
-ls -1t /opt/the-pauli-effect/clients/fredo3d/logs/deploy-*.log | head -1 | xargs less
+ls -1t /opt/pauli-effect/clients/fredo3d/logs/deploy-*.log | head -1 | xargs less
 
 # Health check result
-/opt/the-pauli-effect/clients/fredo3d/scripts/healthcheck.sh
+/opt/pauli-effect/clients/fredo3d/scripts/healthcheck.sh
 ```
 
 ## 10. How backups work
 
 - **Automatic**: every night at 03:17 UTC.
-- **Where**: `/opt/the-pauli-effect/clients/fredo3d/data/backups/YYYY-MM-DD/`
+- **Where**: `/opt/pauli-effect/clients/fredo3d/data/backups/YYYY-MM-DD/`
 - **Kept**: 14 days.
 - **Contains**: code, config, `.env`, (in v2: database + media).
 - **Verification**: the backup script refuses to finish if the database dump is empty.
@@ -124,7 +124,7 @@ ls -1t /opt/the-pauli-effect/clients/fredo3d/logs/deploy-*.log | head -1 | xargs
 To trigger one manually:
 
 ```bash
-/opt/the-pauli-effect/clients/fredo3d/scripts/backup.sh
+/opt/pauli-effect/clients/fredo3d/scripts/backup.sh
 ```
 
 ## 11. How to restore
@@ -132,7 +132,7 @@ To trigger one manually:
 Restoring is interactive and always asks "YES" before touching anything live. See `BACKUP-RESTORE.md` for the full procedure. The short version:
 
 ```bash
-/opt/the-pauli-effect/clients/fredo3d/scripts/restore.sh 2026-07-19
+/opt/pauli-effect/clients/fredo3d/scripts/restore.sh 2026-07-19
 ```
 
 ## 12. How to update from GitHub
@@ -140,18 +140,18 @@ Restoring is interactive and always asks "YES" before touching anything live. Se
 When THE PAULI EFFECT pushes a change (new artwork, blog post, fix):
 
 ```bash
-/opt/the-pauli-effect/clients/fredo3d/scripts/deploy.sh
+/opt/pauli-effect/clients/fredo3d/scripts/deploy.sh
 ```
 
 This pulls the latest from `main` and redeploys. It's safe to re-run; it never force-pushes.
 
 ## 13. How to rotate secrets
 
-Secrets live in `/opt/the-pauli-effect/clients/fredo3d/config/.env` (chmod 600).
+Secrets live in `/opt/pauli-effect/clients/fredo3d/config/.env` (chmod 600).
 
 To rotate (e.g. the Payload secret, or a payment key):
 
-1. Edit the file as root: `nano /opt/the-pauli-effect/clients/fredo3d/config/.env`
+1. Edit the file as root: `nano /opt/pauli-effect/clients/fredo3d/config/.env`
 2. Replace the value.
 3. Restart the affected service (or the whole stack — see §8).
 4. Run a backup so the new `.env` is captured.

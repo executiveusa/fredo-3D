@@ -12,12 +12,12 @@
 #
 # Retention: BACKUP_RETENTION_DAYS (default 14).
 # Run via cron daily (see BACKUP-RESTORE.md):
-#   17 3 * * *  /opt/the-pauli-effect/clients/fredo3d/scripts/backup.sh
+#   17 3 * * *  /opt/pauli-effect/clients/fredo3d/scripts/backup.sh
 # =============================================================================
 set -Eeuo pipefail
 
 # ---- Paths -----------------------------------------------------------------
-ROOT="/opt/the-pauli-effect/clients/fredo3d"
+ROOT="/opt/pauli-effect/clients/fredo3d"
 APP_DIR="$ROOT/app"
 ENV_FILE="$ROOT/config/.env"
 BACKUP_DIR="$ROOT/data/backups"

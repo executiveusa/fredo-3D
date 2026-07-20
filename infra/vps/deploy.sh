@@ -2,7 +2,7 @@
 # =============================================================================
 # FREDO 3D — Production deploy (idempotent, fast-forward only, no force)
 # -----------------------------------------------------------------------------
-# Runs on the VPS, inside /opt/the-pauli-effect/clients/fredo3d/app (the repo).
+# Runs on the VPS, inside /opt/pauli-effect/clients/fredo3d/app (the repo).
 # Steps (§25 of the deployment brief):
 #   1. git fetch
 #   2. checkout approved main
@@ -23,13 +23,13 @@
 set -Eeuo pipefail
 
 # ---- Paths ------------------------------------------------------------------
-APP_DIR="${FREDO_APP_DIR:-/opt/the-pauli-effect/clients/fredo3d/app}"
+APP_DIR="${FREDO_APP_DIR:-/opt/pauli-effect/clients/fredo3d/app}"
 INFRA_DIR="$APP_DIR/infra/vps"
-ENV_FILE="${FREDO_INFRA_ENV:-/opt/the-pauli-effect/clients/fredo3d/config/.env}"
+ENV_FILE="${FREDO_INFRA_ENV:-/opt/pauli-effect/clients/fredo3d/config/.env}"
 COMPOSE_FILE="$INFRA_DIR/docker-compose.yml"
 
 # ---- Logging ---------------------------------------------------------------
-LOG_DIR="/opt/the-pauli-effect/clients/fredo3d/logs"
+LOG_DIR="/opt/pauli-effect/clients/fredo3d/logs"
 mkdir -p "$LOG_DIR"
 TS="$(date -u +%Y%m%dT%H%M%SZ)"
 DEPLOY_LOG="$LOG_DIR/deploy-$TS.log"

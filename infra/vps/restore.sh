@@ -18,7 +18,7 @@
 # =============================================================================
 set -Eeuo pipefail
 
-ROOT="/opt/the-pauli-effect/clients/fredo3d"
+ROOT="/opt/pauli-effect/clients/fredo3d"
 APP_DIR="$ROOT/app"
 BACKUP_DIR="$ROOT/data/backups"
 LOG_DIR="$ROOT/logs"

@@ -18,11 +18,11 @@
 # =============================================================================
 set -Eeuo pipefail
 
-APP_DIR="${FREDO_APP_DIR:-/opt/the-pauli-effect/clients/fredo3d/app}"
+APP_DIR="${FREDO_APP_DIR:-/opt/pauli-effect/clients/fredo3d/app}"
 INFRA_DIR="$APP_DIR/infra/vps"
-ENV_FILE="${FREDO_INFRA_ENV:-/opt/the-pauli-effect/clients/fredo3d/config/.env}"
+ENV_FILE="${FREDO_INFRA_ENV:-/opt/pauli-effect/clients/fredo3d/config/.env}"
 COMPOSE_FILE="$INFRA_DIR/docker-compose.yml"
-LOG_DIR="/opt/the-pauli-effect/clients/fredo3d/logs"
+LOG_DIR="/opt/pauli-effect/clients/fredo3d/logs"
 TS="$(date -u +%Y%m%dT%H%M%SZ)"
 ROLLBACK_LOG="$LOG_DIR/rollback-$TS.log"
 

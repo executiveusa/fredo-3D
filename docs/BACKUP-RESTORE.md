@@ -4,7 +4,7 @@
 
 ## What gets backed up
 
-Each daily backup at `/opt/the-pauli-effect/clients/fredo3d/data/backups/YYYY-MM-DD/` contains:
+Each daily backup at `/opt/pauli-effect/clients/fredo3d/data/backups/YYYY-MM-DD/` contains:
 
 | File | Contents | v1 status |
 |---|---|---|
@@ -25,11 +25,11 @@ Each daily backup at `/opt/the-pauli-effect/clients/fredo3d/data/backups/YYYY-MM
 
 ```bash
 # Ad-hoc
-/opt/the-pauli-effect/clients/fredo3d/scripts/backup.sh
+/opt/pauli-effect/clients/fredo3d/scripts/backup.sh
 
 # View today's backup
-ls -la /opt/the-pauli-effect/clients/fredo3d/data/backups/$(date -u +%Y-%m-%d)/
-cat   /opt/the-pauli-effect/clients/fredo3d/data/backups/$(date -u +%Y-%m-%d)/MANIFEST.md
+ls -la /opt/pauli-effect/clients/fredo3d/data/backups/$(date -u +%Y-%m-%d)/
+cat   /opt/pauli-effect/clients/fredo3d/data/backups/$(date -u +%Y-%m-%d)/MANIFEST.md
 ```
 
 ## Verifying a backup (manual test)
@@ -38,10 +38,10 @@ Run at least once after first deploy, then periodically:
 
 ```bash
 # 1. Trigger a manual backup
-/opt/the-pauli-effect/clients/fredo3d/scripts/backup.sh
+/opt/pauli-effect/clients/fredo3d/scripts/backup.sh
 
 # 2. Confirm it is non-empty
-D=/opt/the-pauli-effect/clients/fredo3d/data/backups/$(date -u +%Y-%m-%d)
+D=/opt/pauli-effect/clients/fredo3d/data/backups/$(date -u +%Y-%m-%d)
 du -sh "$D"
 [[ -s "$D/config.tar.gz" ]] && echo "config OK" || echo "config MISSING"
 
@@ -61,10 +61,10 @@ git clone "$D/repo.bundle" /tmp/fredo-verify && ls /tmp/fredo-verify && rm -rf /
 
 ```bash
 # List + pick a date
-/opt/the-pauli-effect/clients/fredo3d/scripts/restore.sh
+/opt/pauli-effect/clients/fredo3d/scripts/restore.sh
 
 # Restore a specific date
-/opt/the-pauli-effect/clients/fredo3d/scripts/restore.sh 2026-07-19
+/opt/pauli-effect/clients/fredo3d/scripts/restore.sh 2026-07-19
 ```
 
 What it does (in order):
@@ -78,7 +78,7 @@ What it does (in order):
 After restore:
 
 ```bash
-cd /opt/the-pauli-effect/clients/fredo3d/app
+cd /opt/pauli-effect/clients/fredo3d/app
 infra/vps/deploy.sh
 ```
 
@@ -89,7 +89,7 @@ If the entire VPS is lost:
 1. Provision a new Hostinger KVM 2 with Ubuntu 24.04 + Coolify.
 2. Mount yesterday's backup (copy the date directory off-box — recommended: rsync to a separate location or download from Coolify's file manager).
 3. From the backup:
-   - `git clone repo.bundle /opt/the-pauli-effect/clients/fredo3d/app`
+   - `git clone repo.bundle /opt/pauli-effect/clients/fredo3d/app`
    - Restore `.env` to `config/.env` (chmod 600)
    - Restore `config.tar.gz` over `app/infra/vps/`
 4. Run `deploy.sh`.

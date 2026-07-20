@@ -5,7 +5,7 @@
 ## Where things live
 
 ```
-/opt/the-pauli-effect/clients/fredo3d/
+/opt/pauli-effect/clients/fredo3d/
 ├── app/            # repo (git checkout of main)
 ├── config/.env     # all secrets (chmod 600, root)
 ├── data/
@@ -21,15 +21,15 @@
 ### Check service health
 
 ```bash
-/opt/the-pauli-effect/clients/fredo3d/scripts/healthcheck.sh
+/opt/pauli-effect/clients/fredo3d/scripts/healthcheck.sh
 # add --public to also hit https://fredo3d.com
 ```
 
 ### View container status & logs
 
 ```bash
-docker compose --env-file /opt/the-pauli-effect/clients/fredo3d/config/.env \
-  -f /opt/the-pauli-effect/clients/fredo3d/app/infra/vps/docker-compose.yml ps
+docker compose --env-file /opt/pauli-effect/clients/fredo3d/config/.env \
+  -f /opt/pauli-effect/clients/fredo3d/app/infra/vps/docker-compose.yml ps
 
 docker logs --tail 100 fredo3d-web
 docker logs --tail 100 fredo3d-cms-hold
@@ -40,14 +40,14 @@ docker logs --tail 100 fredo3d-cms-hold
 ```bash
 docker restart fredo3d-web
 # or the whole stack:
-docker compose --env-file /opt/the-pauli-effect/clients/fredo3d/config/.env \
-  -f /opt/the-pauli-effect/clients/fredo3d/app/infra/vps/docker-compose.yml restart
+docker compose --env-file /opt/pauli-effect/clients/fredo3d/config/.env \
+  -f /opt/pauli-effect/clients/fredo3d/app/infra/vps/docker-compose.yml restart
 ```
 
 ### Deploy the latest `main`
 
 ```bash
-/opt/the-pauli-effect/clients/fredo3d/scripts/deploy.sh
+/opt/pauli-effect/clients/fredo3d/scripts/deploy.sh
 ```
 
 This is safe to re-run. Fast-forward only; never force.
@@ -55,15 +55,15 @@ This is safe to re-run. Fast-forward only; never force.
 ### Roll back to the previous good deploy
 
 ```bash
-/opt/the-pauli-effect/clients/fredo3d/scripts/rollback.sh
+/opt/pauli-effect/clients/fredo3d/scripts/rollback.sh
 # or pin a specific commit:
-/opt/the-pauli-effect/clients/fredo3d/scripts/rollback.sh <sha>
+/opt/pauli-effect/clients/fredo3d/scripts/rollback.sh <sha>
 ```
 
 ### Run a backup immediately
 
 ```bash
-/opt/the-pauli-effect/clients/fredo3d/scripts/backup.sh
+/opt/pauli-effect/clients/fredo3d/scripts/backup.sh
 ```
 
 (Daily cron runs the same script at 03:17 UTC.)
@@ -74,13 +74,13 @@ Edit with `crontab -e` as root. Recommended entries:
 
 ```cron
 # Daily backup at 03:17 UTC
-17 3 * * *  /opt/the-pauli-effect/clients/fredo3d/scripts/backup.sh >> /opt/the-pauli-effect/clients/fredo3d/logs/cron-backup.log 2>&1
+17 3 * * *  /opt/pauli-effect/clients/fredo3d/scripts/backup.sh >> /opt/pauli-effect/clients/fredo3d/logs/cron-backup.log 2>&1
 
 # Health probe every 5 min (silent; logs only on failure)
-*/5 * * * * /opt/the-pauli-effect/clients/fredo3d/scripts/healthcheck.sh >> /opt/the-pauli-effect/clients/fredo3d/logs/cron-health.log 2>&1 || (echo "fredo3d unhealthy" | mail -s "fredo3d health" ops@example.com)
+*/5 * * * * /opt/pauli-effect/clients/fredo3d/scripts/healthcheck.sh >> /opt/pauli-effect/clients/fredo3d/logs/cron-health.log 2>&1 || (echo "fredo3d unhealthy" | mail -s "fredo3d health" ops@example.com)
 
 # Weekly public health report (certs + routes)
-12 4 * * 1  /opt/the-pauli-effect/clients/fredo3d/scripts/healthcheck.sh --public >> /opt/the-pauli-effect/clients/fredo3d/logs/cron-weekly.log 2>&1
+12 4 * * 1  /opt/pauli-effect/clients/fredo3d/scripts/healthcheck.sh --public >> /opt/pauli-effect/clients/fredo3d/logs/cron-weekly.log 2>&1
 ```
 
 ## Firewall (UFW)
@@ -114,11 +114,11 @@ docker builder prune --filter "until=168h"
 
 ## Log rotation
 
-All services use `json-file` driver with `max-size`/`max-file` set in `docker-compose.yml`. Caddy writes to `/data/fredo3d/logs/caddy-*.log` with `roll_size`/`roll_keep`. Host-level logs in `/opt/the-pauli-effect/clients/fredo3d/logs/` should be rotated via logrotate:
+All services use `json-file` driver with `max-size`/`max-file` set in `docker-compose.yml`. Caddy writes to `/data/fredo3d/logs/caddy-*.log` with `roll_size`/`roll_keep`. Host-level logs in `/opt/pauli-effect/clients/fredo3d/logs/` should be rotated via logrotate:
 
 ```bash
 cat > /etc/logrotate.d/fredo3d <<'EOF'
-/opt/the-pauli-effect/clients/fredo3d/logs/*.log {
+/opt/pauli-effect/clients/fredo3d/logs/*.log {
   daily
   rotate 14
   compress
@@ -132,12 +132,12 @@ EOF
 
 ## Updating secrets
 
-1. Edit `/opt/the-pauli-effect/clients/fredo3d/config/.env` (chmod 600).
+1. Edit `/opt/pauli-effect/clients/fredo3d/config/.env` (chmod 600).
 2. Restart affected containers:
 
    ```bash
-   docker compose --env-file /opt/the-pauli-effect/clients/fredo3d/config/.env \
-     -f /opt/the-pauli-effect/clients/fredo3d/app/infra/vps/docker-compose.yml up -d
+   docker compose --env-file /opt/pauli-effect/clients/fredo3d/config/.env \
+     -f /opt/pauli-effect/clients/fredo3d/app/infra/vps/docker-compose.yml up -d
    ```
 
 3. Never commit the `.env` to Git. The `.gitignore` already excludes `.env*`.
@@ -173,7 +173,7 @@ If the VPS fills up:
 ```bash
 df -h
 docker system df
-du -sh /opt/the-pauli-effect/clients/fredo3d/data/backups/*
+du -sh /opt/pauli-effect/clients/fredo3d/data/backups/*
 du -sh /data/fredo3d/logs/* 2>/dev/null
 du -sh /var/lib/docker/overlay2 2>/dev/null
 ```

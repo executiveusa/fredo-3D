@@ -76,7 +76,7 @@
 
 | Item | Value |
 |---|---|
-| Path | `/opt/the-pauli-effect/clients/fredo3d/data/backups/YYYY-MM-DD/` |
+| Path | `/opt/pauli-effect/clients/fredo3d/data/backups/YYYY-MM-DD/` |
 | Schedule | daily at 03:17 UTC (cron) |
 | Retention | 14 days |
 | Contents | postgres dump (v2) · media · config · `.env` (chmod 600) · git bundle |
@@ -100,10 +100,10 @@
 
 ## Ownership notes
 
-- **THE PAULI EFFECT** owns the deployment architecture, infrastructure code, and operational runbooks under `infra/`, `docs/`, and `/opt/the-pauli-effect/clients/fredo3d/`.
+- **THE PAULI EFFECT** owns the deployment architecture, infrastructure code, and operational runbooks under `infra/`, `docs/`, and `/opt/pauli-effect/clients/fredo3d/`.
 - **FREDO 3D (Wladimir Inostroza)** owns all artwork, biography, and editorial content. Artwork masters are never modified by automation (`.studio/AGENT-RULES.md`).
 - Public site code defaults to **zero application secrets** — payments, merch, CMS, and AI integrations are adapter-driven and disabled by default.
-- No secrets are stored in Git. All runtime secrets live in `/opt/the-pauli-effect/clients/fredo3d/config/.env` (chmod 600, root-owned).
+- No secrets are stored in Git. All runtime secrets live in `/opt/pauli-effect/clients/fredo3d/config/.env` (chmod 600, root-owned).
 
 ## Operational contacts
 

@@ -19,7 +19,7 @@
   deployed SHA, branch, timestamp, and previous SHA.
 - `rollback.sh` also updates it to the rollback target.
 - The latest known-good SHA is mirrored at
-  `/opt/the-pauli-effect/clients/fredo3d/logs/.last_good_sha` for automation.
+  `/opt/pauli-effect/clients/fredo3d/logs/.last_good_sha` for automation.
 
 ## After the first real deploy
 

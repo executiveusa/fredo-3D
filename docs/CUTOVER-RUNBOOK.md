@@ -59,21 +59,21 @@ If a fredo3d block already exists there, **inspect it** — you may be able to r
 ## Phase 1 — Lay down the directory tree + clone
 
 ```bash
-sudo mkdir -p /opt/the-pauli-effect/clients/fredo3d/{app,config,data/{postgres,media,backups},logs,scripts}
-sudo chown -R root:root /opt/the-pauli-effect
+sudo mkdir -p /opt/pauli-effect/clients/fredo3d/{app,config,data/{postgres,media,backups},logs,scripts}
+sudo chown -R root:root /opt/pauli-effect
 
 # Clone main
-sudo git clone https://github.com/executiveusa/fredo-3D.git /opt/the-pauli-effect/clients/fredo3d/app
-cd /opt/the-pauli-effect/clients/fredo3d/app
+sudo git clone https://github.com/executiveusa/fredo-3D.git /opt/pauli-effect/clients/fredo3d/app
+cd /opt/pauli-effect/clients/fredo3d/app
 git log --oneline -3     # confirm HEAD matches DEPLOYED-COMMIT.md target
 
 # Symlink the ops scripts for convenience
-sudo ln -sf /opt/the-pauli-effect/clients/fredo3d/app/infra/vps/deploy.sh      /opt/the-pauli-effect/clients/fredo3d/scripts/deploy.sh
-sudo ln -sf /opt/the-pauli-effect/clients/fredo3d/app/infra/vps/rollback.sh    /opt/the-pauli-effect/clients/fredo3d/scripts/rollback.sh
-sudo ln -sf /opt/the-pauli-effect/clients/fredo3d/app/infra/vps/backup.sh      /opt/the-pauli-effect/clients/fredo3d/scripts/backup.sh
-sudo ln -sf /opt/the-pauli-effect/clients/fredo3d/app/infra/vps/restore.sh     /opt/the-pauli-effect/clients/fredo3d/scripts/restore.sh
-sudo ln -sf /opt/the-pauli-effect/clients/fredo3d/app/infra/vps/healthcheck.sh /opt/the-pauli-effect/clients/fredo3d/scripts/healthcheck.sh
-sudo ln -sf /opt/the-pauli-effect/clients/fredo3d/app/infra/vps/dns-apply.sh   /opt/the-pauli-effect/clients/fredo3d/scripts/dns-apply.sh
+sudo ln -sf /opt/pauli-effect/clients/fredo3d/app/infra/vps/deploy.sh      /opt/pauli-effect/clients/fredo3d/scripts/deploy.sh
+sudo ln -sf /opt/pauli-effect/clients/fredo3d/app/infra/vps/rollback.sh    /opt/pauli-effect/clients/fredo3d/scripts/rollback.sh
+sudo ln -sf /opt/pauli-effect/clients/fredo3d/app/infra/vps/backup.sh      /opt/pauli-effect/clients/fredo3d/scripts/backup.sh
+sudo ln -sf /opt/pauli-effect/clients/fredo3d/app/infra/vps/restore.sh     /opt/pauli-effect/clients/fredo3d/scripts/restore.sh
+sudo ln -sf /opt/pauli-effect/clients/fredo3d/app/infra/vps/healthcheck.sh /opt/pauli-effect/clients/fredo3d/scripts/healthcheck.sh
+sudo ln -sf /opt/pauli-effect/clients/fredo3d/app/infra/vps/dns-apply.sh   /opt/pauli-effect/clients/fredo3d/scripts/dns-apply.sh
 ```
 
 ---
@@ -81,7 +81,7 @@ sudo ln -sf /opt/the-pauli-effect/clients/fredo3d/app/infra/vps/dns-apply.sh   /
 ## Phase 2 — Populate secrets
 
 ```bash
-sudo nano /opt/the-pauli-effect/clients/fredo3d/config/.env
+sudo nano /opt/pauli-effect/clients/fredo3d/config/.env
 # Paste the populated env (from infra/vps/.env.example template + real values).
 # At minimum for v1:
 #   NEXT_PUBLIC_SITE_NAME=FREDO 3D
@@ -95,11 +95,11 @@ sudo nano /opt/the-pauli-effect/clients/fredo3d/config/.env
 #   BACKUP_RETENTION_DAYS=14
 # v2 secrets (POSTGRES_PASSWORD, PAYLOAD_SECRET) can be blank for now.
 
-sudo chmod 600 /opt/the-pauli-effect/clients/fredo3d/config/.env
-sudo chown root:root /opt/the-pauli-effect/clients/fredo3d/config/.env
+sudo chmod 600 /opt/pauli-effect/clients/fredo3d/config/.env
+sudo chown root:root /opt/pauli-effect/clients/fredo3d/config/.env
 
 # Verify
-sudo stat -c '%a %U:%G %n' /opt/the-pauli-effect/clients/fredo3d/config/.env
+sudo stat -c '%a %U:%G %n' /opt/pauli-effect/clients/fredo3d/config/.env
 # Expected: 600 root:root .../.env
 ```
 
@@ -108,8 +108,8 @@ sudo stat -c '%a %U:%G %n' /opt/the-pauli-effect/clients/fredo3d/config/.env
 ## Phase 3 — Bring the containers up
 
 ```bash
-cd /opt/the-pauli-effect/clients/fredo3d/app
-sudo /opt/the-pauli-effect/clients/fredo3d/scripts/deploy.sh
+cd /opt/pauli-effect/clients/fredo3d/app
+sudo /opt/pauli-effect/clients/fredo3d/scripts/deploy.sh
 ```
 
 `deploy.sh` does everything: fetch, fast-forward, build image, `compose up -d`, wait for health, smoke-test.
@@ -119,7 +119,7 @@ When it prints `DEPLOY COMPLETE`, verify locally:
 ```bash
 curl -sI http://127.0.0.1:3000/es | head -1   # expect HTTP/1.1 200
 curl -sI http://127.0.0.1:3001/   | head -1   # expect HTTP/1.1 200
-docker compose --env-file /opt/the-pauli-effect/clients/fredo3d/config/.env \
+docker compose --env-file /opt/pauli-effect/clients/fredo3d/config/.env \
   -f infra/vps/docker-compose.yml ps
 ```
 
@@ -154,7 +154,7 @@ Two options. **Option A is strongly recommended** because Coolify owns the proxy
 
 ```bash
 # Append the drop-in fragment to Coolify's Caddyfile
-sudo cp /opt/the-pauli-effect/clients/fredo3d/app/infra/vps/Caddyfile.fragment \
+sudo cp /opt/pauli-effect/clients/fredo3d/app/infra/vps/Caddyfile.fragment \
         /data/coolify/configs/fredo3d.Caddyfile.fragment
 
 # Edit Coolify's main Caddyfile to add at the top:
@@ -176,8 +176,8 @@ Can be run from anywhere with `curl` + `dig`/`nslookup`. Run from the VPS or you
 
 ```bash
 export HOSTINGER_API_TOKEN='<from vault>'
-sudo /opt/the-pauli-effect/clients/fredo3d/scripts/dns-apply.sh --dry   # preview first
-sudo /opt/the-pauli-effect/clients/fredo3d/scripts/dns-apply.sh         # apply for real
+sudo /opt/pauli-effect/clients/fredo3d/scripts/dns-apply.sh --dry   # preview first
+sudo /opt/pauli-effect/clients/fredo3d/scripts/dns-apply.sh         # apply for real
 ```
 
 The script:
@@ -219,7 +219,7 @@ echo | openssl s_client -servername fredo3d.com -connect fredo3d.com:443 2>/dev/
   | openssl x509 -noout -subject -dates
 
 # Stack health
-/opt/the-pauli-effect/clients/fredo3d/scripts/healthcheck.sh --public
+/opt/pauli-effect/clients/fredo3d/scripts/healthcheck.sh --public
 ```
 
 **Definition of DONE (per the deployment brief §35):**
@@ -249,15 +249,15 @@ echo | openssl s_client -servername fredo3d.com -connect fredo3d.com:443 2>/dev/
 ```bash
 sudo crontab -e
 # Add:
-17 3 * * * /opt/the-pauli-effect/clients/fredo3d/scripts/backup.sh >> /opt/the-pauli-effect/clients/fredo3d/logs/cron-backup.log 2>&1
-*/5 * * * * /opt/the-pauli-effect/clients/fredo3d/scripts/healthcheck.sh >> /opt/the-pauli-effect/clients/fredo3d/logs/cron-health.log 2>&1
+17 3 * * * /opt/pauli-effect/clients/fredo3d/scripts/backup.sh >> /opt/pauli-effect/clients/fredo3d/logs/cron-backup.log 2>&1
+*/5 * * * * /opt/pauli-effect/clients/fredo3d/scripts/healthcheck.sh >> /opt/pauli-effect/clients/fredo3d/logs/cron-health.log 2>&1
 ```
 
 Trigger the first backup manually to confirm it works:
 
 ```bash
-sudo /opt/the-pauli-effect/clients/fredo3d/scripts/backup.sh
-ls -la /opt/the-pauli-effect/clients/fredo3d/data/backups/$(date -u +%Y-%m-%d)/
+sudo /opt/pauli-effect/clients/fredo3d/scripts/backup.sh
+ls -la /opt/pauli-effect/clients/fredo3d/data/backups/$(date -u +%Y-%m-%d)/
 ```
 
 ---
@@ -290,7 +290,7 @@ If Vercel had the custom domain:
 If anything goes wrong after cutover:
 
 ```bash
-/opt/the-pauli-effect/clients/fredo3d/scripts/rollback.sh
+/opt/pauli-effect/clients/fredo3d/scripts/rollback.sh
 ```
 
 Volumes and DNS are untouched. See `ROLLBACK.md`.

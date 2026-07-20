@@ -13,11 +13,11 @@
 
 ## The fast path
 
-`deploy.sh` writes the sha it deployed to `/opt/the-pauli-effect/clients/fredo3d/logs/.last_good_sha`. `rollback.sh` reads it.
+`deploy.sh` writes the sha it deployed to `/opt/pauli-effect/clients/fredo3d/logs/.last_good_sha`. `rollback.sh` reads it.
 
 ```bash
 # Roll back to the last recorded good sha
-/opt/the-pauli-effect/clients/fredo3d/scripts/rollback.sh
+/opt/pauli-effect/clients/fredo3d/scripts/rollback.sh
 ```
 
 The script:
@@ -36,7 +36,7 @@ The script:
 ## Pinning a specific commit
 
 ```bash
-/opt/the-pauli-effect/clients/fredo3d/scripts/rollback.sh 1a6ec7a89eb31d5a2c6cec0dd8911fe47137bbb3
+/opt/pauli-effect/clients/fredo3d/scripts/rollback.sh 1a6ec7a89eb31d5a2c6cec0dd8911fe47137bbb3
 ```
 
 ## Manual rollback (if the script fails)
@@ -44,7 +44,7 @@ The script:
 If the script can't run (e.g. disk full, compose broken):
 
 ```bash
-cd /opt/the-pauli-effect/clients/fredo3d/app
+cd /opt/pauli-effect/clients/fredo3d/app
 
 # 1. Find a known-good commit
 git log --oneline -20
@@ -53,9 +53,9 @@ git log --oneline -20
 git checkout --detach <sha>
 
 # 3. Rebuild + restart
-docker compose --env-file /opt/the-pauli-effect/clients/fredo3d/config/.env \
+docker compose --env-file /opt/pauli-effect/clients/fredo3d/config/.env \
   -f infra/vps/docker-compose.yml build
-docker compose --env-file /opt/the-pauli-effect/clients/fredo3d/config/.env \
+docker compose --env-file /opt/pauli-effect/clients/fredo3d/config/.env \
   -f infra/vps/docker-compose.yml up -d
 
 # 4. Smoke test
@@ -68,7 +68,7 @@ DNS changes are independent of code deploys. If a bad DNS change was applied:
 
 ```bash
 # With the old VPS IP, re-run dns-apply with an override
-FREDO_VPS_IPV4=<old-ip> HOSTINGER_API_TOKEN=... /opt/the-pauli-effect/clients/fredo3d/scripts/dns-apply.sh
+FREDO_VPS_IPV4=<old-ip> HOSTINGER_API_TOKEN=... /opt/pauli-effect/clients/fredo3d/scripts/dns-apply.sh
 ```
 
 DNS TTL is 3600s; expect up to ~1h for full reversion.
@@ -84,10 +84,10 @@ DNS TTL is 3600s; expect up to ~1h for full reversion.
 
 ```bash
 # Local stack
-/opt/the-pauli-effect/clients/fredo3d/scripts/healthcheck.sh
+/opt/pauli-effect/clients/fredo3d/scripts/healthcheck.sh
 
 # Public (post-DNS-cutover only)
-/opt/the-pauli-effect/clients/fredo3d/scripts/healthcheck.sh --public
+/opt/pauli-effect/clients/fredo3d/scripts/healthcheck.sh --public
 ```
 
 Both must report HEALTHY before declaring the rollback complete.

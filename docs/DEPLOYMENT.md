@@ -57,7 +57,7 @@ fredo-3D/
 ## VPS directory layout (on the box)
 
 ```
-/opt/the-pauli-effect/clients/fredo3d/
+/opt/pauli-effect/clients/fredo3d/
 ├── app/            # git clone of executiveusa/fredo-3D
 ├── config/
 │   └── .env        # chmod 600, root-owned — NEVER committed
@@ -73,7 +73,7 @@ fredo-3D/
 
 1. SSH to the VPS as root (or sudo-capable user).
 2. Create the directory tree and clone the repo (see CUTOVER-RUNBOOK.md §1).
-3. Populate `/opt/the-pauli-effect/clients/fredo3d/config/.env` (chmod 600).
+3. Populate `/opt/pauli-effect/clients/fredo3d/config/.env` (chmod 600).
 4. Wire Caddy (via Coolify proxy UI or by importing the fragment).
 5. Run `deploy.sh` — builds image, brings up containers, smoke-tests.
 6. Run `dns-apply.sh` from anywhere with the Hostinger token — points `fredo3d.com`, `www`, `cms` at `31.220.58.212`.

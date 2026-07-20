@@ -12,7 +12,7 @@
 # =============================================================================
 set -Eeuo pipefail
 
-ROOT="/opt/the-pauli-effect/clients/fredo3d"
+ROOT="/opt/pauli-effect/clients/fredo3d"
 LOG_DIR="$ROOT/logs"
 mkdir -p "$LOG_DIR"
 TS="$(date -u +%Y%m%dT%H%M%SZ)"
