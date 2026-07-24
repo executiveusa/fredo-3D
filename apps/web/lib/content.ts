@@ -1,4 +1,4 @@
-import manifest from "../../../content/artworks/artwork-manifest.json";
+import manifest from "./artwork-manifest.json";
 
 export type Locale = "es" | "en";
 

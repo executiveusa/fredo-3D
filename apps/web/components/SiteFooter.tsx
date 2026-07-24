@@ -11,8 +11,8 @@ export default function SiteFooter({ locale }: { locale: Locale }) {
         <div className="footer-grid">
           <div>
             <h3>FREDO 3D</h3>
-            <p>{es ? "Wladimir Inostroza · Chile" : "Wladimir Inostroza · Chile"}</p>
-            <p style={{ fontStyle: "italic" }}>{t.hero.tagline[locale]}</p>
+            <p style={{ color: "var(--ink-2)" }}>Wladimir Inostroza · Chile</p>
+            <p style={{ fontStyle: "italic", color: "var(--ink-3)" }}>{t.hero.tagline[locale]}</p>
           </div>
           <div>
             <h3>{es ? "Explorar" : "Explore"}</h3>
@@ -23,11 +23,15 @@ export default function SiteFooter({ locale }: { locale: Locale }) {
           <div>
             <h3>{es ? "Hablar con Fredo" : "Talk to Fredo"}</h3>
             <p>
-              <a href={waLink(es ? "Hola Fredo, vengo de fredo3d.com" : "Hi Fredo, I found you on fredo3d.com")} rel="noopener noreferrer" target="_blank">
+              <a
+                href={waLink(es ? "Hola Fredo, vengo de fredo3d.com" : "Hi Fredo, I found you on fredo3d.com")}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
                 WhatsApp +56 9 9383 8223
               </a>
             </p>
-            <p>{t.footer.langNote[locale]}</p>
+            <p style={{ color: "var(--ink-3)" }}>{t.footer.langNote[locale]}</p>
             <p>
               <a href="https://www.instagram.com/fredosis.art/" rel="noopener noreferrer" target="_blank">Instagram</a>
               {" · "}
@@ -38,6 +42,11 @@ export default function SiteFooter({ locale }: { locale: Locale }) {
           </div>
         </div>
         <p className="footer-small">{t.footer.rights[locale]}</p>
+        <p className="colophon">
+          {es
+            ? "No se usó inteligencia artificial para generar ninguna imagen de este sitio."
+            : "No artificial intelligence was used to generate any imagery on this site."}
+        </p>
       </div>
     </footer>
   );
