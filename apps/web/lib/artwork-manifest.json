@@ -1,0 +1,557 @@
+[
+ {
+  "id": "obra-01",
+  "title": null,
+  "titleStatus": "unknown",
+  "year": null,
+  "yearStatus": "unknown",
+  "medium": null,
+  "dimensions": null,
+  "collection": null,
+  "description": null,
+  "story": null,
+  "availability": "unknown",
+  "commerce": {
+   "originalSaleEnabled": false,
+   "offersEnabled": true,
+   "printsEnabled": false,
+   "merchEnabled": false,
+   "licensingEnabled": false
+  },
+  "rights": {
+   "ownedByArtist": true,
+   "reproductionApproved": false,
+   "merchandiseApproved": false,
+   "licensingAvailable": false
+  },
+  "masterAsset": "content/artworks/masters/1.jpg",
+  "webAssets": [],
+  "provenanceSources": [],
+  "confidence": "unknown",
+  "showInGallery": false,
+  "category": "pencil",
+  "alt": {
+   "es": "Retrato en estilo de garabatos de un rostro masculino",
+   "en": "Scribble-style portrait of a male face"
+  },
+  "provenanceNote": "EXCLUDED: no visible Fredo signature; style resembles another known artist. Requires Fredo confirmation before any display."
+ },
+ {
+  "id": "obra-03",
+  "title": null,
+  "titleStatus": "unknown",
+  "year": null,
+  "yearStatus": "unknown",
+  "medium": null,
+  "dimensions": null,
+  "collection": null,
+  "description": null,
+  "story": null,
+  "availability": "unknown",
+  "commerce": {
+   "originalSaleEnabled": false,
+   "offersEnabled": true,
+   "printsEnabled": false,
+   "merchEnabled": false,
+   "licensingEnabled": false
+  },
+  "rights": {
+   "ownedByArtist": true,
+   "reproductionApproved": false,
+   "merchandiseApproved": false,
+   "licensingAvailable": false
+  },
+  "masterAsset": "content/artworks/masters/3.jpg",
+  "webAssets": [],
+  "provenanceSources": [],
+  "confidence": "verified",
+  "showInGallery": true,
+  "category": "anamorphic",
+  "alt": {
+   "es": "Dibujo anamorfico: fichas de domino cayendo en espiral, con mano real sosteniendo una ficha. Firmado Fredo.",
+   "en": "Anamorphic drawing: domino tiles falling in a spiral, real hand holding one tile. Signed Fredo."
+  },
+  "provenanceNote": "Visible 'Fredo' signature top right."
+ },
+ {
+  "id": "obra-04",
+  "title": null,
+  "titleStatus": "unknown",
+  "year": null,
+  "yearStatus": "unknown",
+  "medium": null,
+  "dimensions": null,
+  "collection": null,
+  "description": null,
+  "story": null,
+  "availability": "unknown",
+  "commerce": {
+   "originalSaleEnabled": false,
+   "offersEnabled": true,
+   "printsEnabled": false,
+   "merchEnabled": false,
+   "licensingEnabled": false
+  },
+  "rights": {
+   "ownedByArtist": true,
+   "reproductionApproved": false,
+   "merchandiseApproved": false,
+   "licensingAvailable": false
+  },
+  "masterAsset": "content/artworks/masters/4.jpg",
+  "webAssets": [],
+  "provenanceSources": [],
+  "confidence": "partial",
+  "showInGallery": true,
+  "category": "anamorphic",
+  "alt": {
+   "es": "Dibujo 3D en cuaderno: escaleras imposibles con figuras surrealistas que salen de la pagina",
+   "en": "3D sketchbook drawing: impossible staircases with surreal figures rising off the page"
+  },
+  "provenanceNote": "Style consistent with documented Fredo sketchbook anamorphics."
+ },
+ {
+  "id": "obra-05",
+  "title": null,
+  "titleStatus": "unknown",
+  "year": null,
+  "yearStatus": "unknown",
+  "medium": null,
+  "dimensions": null,
+  "collection": null,
+  "description": null,
+  "story": null,
+  "availability": "unknown",
+  "commerce": {
+   "originalSaleEnabled": false,
+   "offersEnabled": true,
+   "printsEnabled": false,
+   "merchEnabled": false,
+   "licensingEnabled": false
+  },
+  "rights": {
+   "ownedByArtist": true,
+   "reproductionApproved": false,
+   "merchandiseApproved": false,
+   "licensingAvailable": false
+  },
+  "masterAsset": "content/artworks/masters/5.jpg",
+  "webAssets": [],
+  "provenanceSources": [],
+  "confidence": "verified",
+  "showInGallery": true,
+  "category": "anamorphic",
+  "alt": {
+   "es": "Dibujo 3D de un bebe que parece emerger del papel, junto a lata y lapiz reales. Firmado Fredo.",
+   "en": "3D drawing of a baby appearing to emerge from the paper, beside a real can and pencil. Signed Fredo."
+  },
+  "provenanceNote": "Visible 'Fredo' signature top left."
+ },
+ {
+  "id": "obra-06",
+  "title": null,
+  "titleStatus": "unknown",
+  "year": null,
+  "yearStatus": "unknown",
+  "medium": null,
+  "dimensions": null,
+  "collection": null,
+  "description": null,
+  "story": null,
+  "availability": "unknown",
+  "commerce": {
+   "originalSaleEnabled": false,
+   "offersEnabled": true,
+   "printsEnabled": false,
+   "merchEnabled": false,
+   "licensingEnabled": false
+  },
+  "rights": {
+   "ownedByArtist": true,
+   "reproductionApproved": false,
+   "merchandiseApproved": false,
+   "licensingAvailable": false
+  },
+  "masterAsset": "content/artworks/masters/6.jpg",
+  "webAssets": [],
+  "provenanceSources": [],
+  "confidence": "partial",
+  "showInGallery": true,
+  "category": "anamorphic",
+  "alt": {
+   "es": "Dibujo 3D de un buho sobre letras esculpidas 'Wizdom Productions'",
+   "en": "3D drawing of an owl above sculpted letters reading 'Wizdom Productions'"
+  },
+  "provenanceNote": "Commissioned-style piece; setup photo consistent with Fredo studio shots."
+ },
+ {
+  "id": "obra-07",
+  "title": null,
+  "titleStatus": "unknown",
+  "year": null,
+  "yearStatus": "unknown",
+  "medium": null,
+  "dimensions": null,
+  "collection": null,
+  "description": null,
+  "story": null,
+  "availability": "unknown",
+  "commerce": {
+   "originalSaleEnabled": false,
+   "offersEnabled": true,
+   "printsEnabled": false,
+   "merchEnabled": false,
+   "licensingEnabled": false
+  },
+  "rights": {
+   "ownedByArtist": true,
+   "reproductionApproved": false,
+   "merchandiseApproved": false,
+   "licensingAvailable": false
+  },
+  "masterAsset": "content/artworks/masters/7.jpg",
+  "webAssets": [],
+  "provenanceSources": [],
+  "confidence": "unknown",
+  "showInGallery": false,
+  "category": "surreal",
+  "alt": {
+   "es": "Pintura en grises: una mano surge del agua y se apoya sobre una cabeza semihundida entre piedras",
+   "en": "Grayscale painting: a hand rises from water resting on a half-submerged head among stones"
+  },
+  "provenanceNote": "EXCLUDED pending confirmation: unsigned painterly work, provenance unverified."
+ },
+ {
+  "id": "obra-08",
+  "title": null,
+  "titleStatus": "unknown",
+  "year": null,
+  "yearStatus": "unknown",
+  "medium": null,
+  "dimensions": null,
+  "collection": null,
+  "description": null,
+  "story": null,
+  "availability": "unknown",
+  "commerce": {
+   "originalSaleEnabled": false,
+   "offersEnabled": true,
+   "printsEnabled": false,
+   "merchEnabled": false,
+   "licensingEnabled": false
+  },
+  "rights": {
+   "ownedByArtist": true,
+   "reproductionApproved": false,
+   "merchandiseApproved": false,
+   "licensingAvailable": false
+  },
+  "masterAsset": "content/artworks/masters/8.jpg",
+  "webAssets": [],
+  "provenanceSources": [],
+  "confidence": "partial",
+  "showInGallery": true,
+  "category": "painting",
+  "alt": {
+   "es": "Pintura: figura con tunica naranja sobre bote en llamas en mar nocturno bajo la luna",
+   "en": "Painting: orange-robed figure on a burning boat in a night sea under the moon"
+  },
+  "provenanceNote": "Painterly work; confirm medium/date with Fredo."
+ },
+ {
+  "id": "obra-09",
+  "title": null,
+  "titleStatus": "unknown",
+  "year": null,
+  "yearStatus": "unknown",
+  "medium": null,
+  "dimensions": null,
+  "collection": null,
+  "description": null,
+  "story": null,
+  "availability": "unknown",
+  "commerce": {
+   "originalSaleEnabled": false,
+   "offersEnabled": true,
+   "printsEnabled": false,
+   "merchEnabled": false,
+   "licensingEnabled": false
+  },
+  "rights": {
+   "ownedByArtist": true,
+   "reproductionApproved": false,
+   "merchandiseApproved": false,
+   "licensingAvailable": false
+  },
+  "masterAsset": "content/artworks/masters/9.jpg",
+  "webAssets": [],
+  "provenanceSources": [],
+  "confidence": "partial",
+  "showInGallery": true,
+  "category": "surreal",
+  "alt": {
+   "es": "Tinta y lavado: cabeza de piedra partida con figura y arbol, luna llena de fondo",
+   "en": "Ink and wash: split stone head with a figure and tree, full moon behind"
+  },
+  "provenanceNote": "Surreal style consistent with portfolio."
+ },
+ {
+  "id": "obra-10",
+  "title": null,
+  "titleStatus": "unknown",
+  "year": null,
+  "yearStatus": "unknown",
+  "medium": null,
+  "dimensions": null,
+  "collection": null,
+  "description": null,
+  "story": null,
+  "availability": "unknown",
+  "commerce": {
+   "originalSaleEnabled": false,
+   "offersEnabled": true,
+   "printsEnabled": false,
+   "merchEnabled": false,
+   "licensingEnabled": false
+  },
+  "rights": {
+   "ownedByArtist": true,
+   "reproductionApproved": false,
+   "merchandiseApproved": false,
+   "licensingAvailable": false
+  },
+  "masterAsset": "content/artworks/masters/10.jpg",
+  "webAssets": [],
+  "provenanceSources": [],
+  "confidence": "partial",
+  "showInGallery": true,
+  "category": "anamorphic",
+  "alt": {
+   "es": "Dibujo 3D de craneo con planta, sobre papel curvado en escritorio de estudio",
+   "en": "3D skull drawing with plant, on curved paper on a studio desk"
+  },
+  "provenanceNote": "Classic Fredo anamorphic studio setup."
+ },
+ {
+  "id": "obra-11",
+  "title": null,
+  "titleStatus": "unknown",
+  "year": null,
+  "yearStatus": "unknown",
+  "medium": null,
+  "dimensions": null,
+  "collection": null,
+  "description": null,
+  "story": null,
+  "availability": "unknown",
+  "commerce": {
+   "originalSaleEnabled": false,
+   "offersEnabled": true,
+   "printsEnabled": false,
+   "merchEnabled": false,
+   "licensingEnabled": false
+  },
+  "rights": {
+   "ownedByArtist": true,
+   "reproductionApproved": false,
+   "merchandiseApproved": false,
+   "licensingAvailable": false
+  },
+  "masterAsset": "content/artworks/masters/11.jpg",
+  "webAssets": [],
+  "provenanceSources": [],
+  "confidence": "partial",
+  "showInGallery": true,
+  "category": "surreal",
+  "alt": {
+   "es": "Grafito surrealista: figuras palidas alrededor de un bebe en una cama",
+   "en": "Surreal graphite: pale figures around an infant on a bed"
+  },
+  "provenanceNote": "Beksinski-influenced graphite; influence documented in 2010 interview."
+ },
+ {
+  "id": "obra-12",
+  "title": null,
+  "titleStatus": "unknown",
+  "year": null,
+  "yearStatus": "unknown",
+  "medium": null,
+  "dimensions": null,
+  "collection": null,
+  "description": null,
+  "story": null,
+  "availability": "unknown",
+  "commerce": {
+   "originalSaleEnabled": false,
+   "offersEnabled": true,
+   "printsEnabled": false,
+   "merchEnabled": false,
+   "licensingEnabled": false
+  },
+  "rights": {
+   "ownedByArtist": true,
+   "reproductionApproved": false,
+   "merchandiseApproved": false,
+   "licensingAvailable": false
+  },
+  "masterAsset": "content/artworks/masters/12.jpg",
+  "webAssets": [],
+  "provenanceSources": [],
+  "confidence": "partial",
+  "showInGallery": true,
+  "category": "pencil",
+  "alt": {
+   "es": "Grafito: gato sentado sobre un hongo, paisaje onirico",
+   "en": "Graphite: cat seated on a mushroom in a dreamlike landscape"
+  },
+  "provenanceNote": null
+ },
+ {
+  "id": "obra-13",
+  "title": null,
+  "titleStatus": "unknown",
+  "year": null,
+  "yearStatus": "unknown",
+  "medium": null,
+  "dimensions": null,
+  "collection": null,
+  "description": null,
+  "story": null,
+  "availability": "unknown",
+  "commerce": {
+   "originalSaleEnabled": false,
+   "offersEnabled": true,
+   "printsEnabled": false,
+   "merchEnabled": false,
+   "licensingEnabled": false
+  },
+  "rights": {
+   "ownedByArtist": true,
+   "reproductionApproved": false,
+   "merchandiseApproved": false,
+   "licensingAvailable": false
+  },
+  "masterAsset": "content/artworks/masters/13.jpg",
+  "webAssets": [],
+  "provenanceSources": [],
+  "confidence": "partial",
+  "showInGallery": true,
+  "category": "pencil",
+  "alt": {
+   "es": "Lapiz: perfil femenino que se transforma en formas curvas ornamentales",
+   "en": "Pencil: female profile transforming into ornamental curved forms"
+  },
+  "provenanceNote": null
+ },
+ {
+  "id": "obra-14",
+  "title": null,
+  "titleStatus": "unknown",
+  "year": null,
+  "yearStatus": "unknown",
+  "medium": null,
+  "dimensions": null,
+  "collection": null,
+  "description": null,
+  "story": null,
+  "availability": "unknown",
+  "commerce": {
+   "originalSaleEnabled": false,
+   "offersEnabled": true,
+   "printsEnabled": false,
+   "merchEnabled": false,
+   "licensingEnabled": false
+  },
+  "rights": {
+   "ownedByArtist": true,
+   "reproductionApproved": false,
+   "merchandiseApproved": false,
+   "licensingAvailable": false
+  },
+  "masterAsset": "content/artworks/masters/14.jpg",
+  "webAssets": [],
+  "provenanceSources": [],
+  "confidence": "partial",
+  "showInGallery": false,
+  "category": "merch-photo",
+  "alt": {
+   "es": "Fotografia de polera blanca con estampado de obra de Fredo",
+   "en": "Photo of a white t-shirt printed with a Fredo artwork"
+  },
+  "provenanceNote": "Merch evidence photo, not an artwork master. Reserve for FREDO OBJECTS catalog section."
+ },
+ {
+  "id": "obra-15",
+  "title": null,
+  "titleStatus": "unknown",
+  "year": null,
+  "yearStatus": "unknown",
+  "medium": null,
+  "dimensions": null,
+  "collection": null,
+  "description": null,
+  "story": null,
+  "availability": "unknown",
+  "commerce": {
+   "originalSaleEnabled": false,
+   "offersEnabled": true,
+   "printsEnabled": false,
+   "merchEnabled": false,
+   "licensingEnabled": false
+  },
+  "rights": {
+   "ownedByArtist": true,
+   "reproductionApproved": false,
+   "merchandiseApproved": false,
+   "licensingAvailable": false
+  },
+  "masterAsset": "content/artworks/masters/15.jpg",
+  "webAssets": [],
+  "provenanceSources": [],
+  "confidence": "partial",
+  "showInGallery": true,
+  "category": "surreal",
+  "alt": {
+   "es": "Grafito: figura con cabeza de abanico de plumas sentada en un trono, hojas al viento",
+   "en": "Graphite: figure with a feather-fan head seated on a throne, leaves in the wind"
+  },
+  "provenanceNote": null
+ },
+ {
+  "id": "obra-16",
+  "title": null,
+  "titleStatus": "unknown",
+  "year": null,
+  "yearStatus": "unknown",
+  "medium": null,
+  "dimensions": null,
+  "collection": null,
+  "description": null,
+  "story": null,
+  "availability": "unknown",
+  "commerce": {
+   "originalSaleEnabled": false,
+   "offersEnabled": true,
+   "printsEnabled": false,
+   "merchEnabled": false,
+   "licensingEnabled": false
+  },
+  "rights": {
+   "ownedByArtist": true,
+   "reproductionApproved": false,
+   "merchandiseApproved": false,
+   "licensingAvailable": false
+  },
+  "masterAsset": "content/artworks/masters/images.jpg",
+  "webAssets": [],
+  "provenanceSources": [],
+  "confidence": "partial",
+  "showInGallery": true,
+  "category": "painting",
+  "alt": {
+   "es": "Pintura de gran formato en jardin: figura verde sentada con esfera luminosa por cabeza en un portal vegetal",
+   "en": "Large-format painting in a garden: seated green figure with a luminous sphere head in a plant portal"
+  },
+  "provenanceNote": "Photographed outdoors; possibly mural/large-format. Confirm with Fredo."
+ }
+]
