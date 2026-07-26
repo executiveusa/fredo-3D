@@ -1,30 +1,28 @@
-import Image from "next/image";
 import type { Locale } from "../lib/content";
-import SiteNav from "./SiteNav";
+import SubPageShell from "./SubPageShell";
 import SiteFooter from "./SiteFooter";
 import IntakeEngine from "./IntakeEngine";
 
 export default function IntakePage({ locale, flow, work }: { locale: Locale; flow?: string; work?: string }) {
   const es = locale === "es";
   return (
-    <>
-      <SiteNav locale={locale} />
-      <main id="main" className="container intake-wrap">
-        {/* Artwork as restrained monochrome background — never reduces readability */}
+    <SubPageShell locale={locale}>
+      <div className="container intake-wrap" style={{ paddingTop: "var(--sp-7)" }}>
         <div className="intake-bg" aria-hidden="true">
-          <Image src="/art/obra-09.jpg" alt="" width={1200} height={1200} sizes="100vw" />
+          <img src="/art/obra-09.jpg" alt="" style={{ width: "140%", opacity: 0.04, filter: "grayscale(1)" }} />
         </div>
         <div className="page-head" style={{ position: "relative", zIndex: 1 }}>
+          <p className="chapter-kicker">{es ? "Encargos" : "Commissions"}</p>
           <h1>{es ? "Encargos y proyectos" : "Commissions and projects"}</h1>
-          <p>
+          <p className="lead">
             {es
               ? "Ofertas por originales, encargos, murales, licencias y colaboraciones — en Chile y el extranjero."
               : "Offers on originals, commissions, murals, licensing, and collaborations — in Chile and abroad."}
           </p>
         </div>
         <IntakeEngine locale={locale} initialFlow={flow} initialWork={work} />
-      </main>
+      </div>
       <SiteFooter locale={locale} />
-    </>
+    </SubPageShell>
   );
 }

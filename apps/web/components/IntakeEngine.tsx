@@ -4,13 +4,6 @@ import { useMemo, useState } from "react";
 import type { Locale } from "../lib/content";
 import { waLink } from "../lib/content";
 
-/**
- * Reusable multi-step intake engine (master prompt §13).
- * Static mode: submission = structured WhatsApp handoff (verified channel).
- * Email notification joins in phase 2 when EMAIL_PROVIDER is enabled and a
- * verified inbox exists — no fake "sent" states before that.
- */
-
 type Flow = "offer" | "commission" | "mural" | "licensing" | "collab";
 
 interface Field {
@@ -161,7 +154,7 @@ export default function IntakeEngine({ locale, initialFlow, initialWork }: { loc
         ))}
       </div>
       <form className="intake-card" onSubmit={submit} noValidate>
-        <h2 style={{ marginTop: 0, fontWeight: 400 }}>{flows[flow].title[locale]}</h2>
+        <h2 style={{ marginTop: 0, fontWeight: 400, fontFamily: "var(--font-display)" }}>{flows[flow].title[locale]}</h2>
         <p className="intake-note">{ui.intro[locale]}</p>
         {(flow === "mural" || flow === "collab") && <p className="note">{ui.travel[locale]}</p>}
         {fields.map((f) => (
@@ -187,11 +180,11 @@ export default function IntakeEngine({ locale, initialFlow, initialWork }: { loc
           </div>
         ))}
         {error && (
-          <p role="alert" style={{ color: "#b3261e", fontFamily: "var(--sans)", fontSize: "0.85rem" }}>
+          <p role="alert" style={{ color: "var(--accent)", fontFamily: "var(--font-mono)", fontSize: "0.75rem", letterSpacing: "0.12em" }}>
             {ui.required[locale]}
           </p>
         )}
-        <button type="submit" className="btn btn-solid" style={{ width: "100%" }}>
+        <button type="submit" className="btn btn-solid" style={{ width: "100%", marginTop: "var(--sp-3)" }}>
           {ui.send[locale]}
         </button>
         <p className="intake-note">{ui.noCommit[locale]}</p>

@@ -1,9 +1,8 @@
 import Link from "next/link";
-import Image from "next/image";
 import type { Artwork, Locale } from "../lib/content";
 import { availabilityLabel, categoryLabels, waLink, workImage, workLabel } from "../lib/content";
 import { routes, t } from "../lib/i18n";
-import SiteNav from "./SiteNav";
+import SubPageShell from "./SubPageShell";
 import SiteFooter from "./SiteFooter";
 
 export default function WorkPage({ work, locale }: { work: Artwork; locale: Locale }) {
@@ -15,24 +14,19 @@ export default function WorkPage({ work, locale }: { work: Artwork; locale: Loca
     : `Hi Fredo, I'm interested in the work "${label}" (${work.id}) I saw on fredo3d.com.`;
 
   return (
-    <>
-      <SiteNav locale={locale} />
-      <main id="main" className="container">
+    <SubPageShell locale={locale}>
+      <div className="container" style={{ paddingTop: "var(--sp-7)" }}>
         <div className="work-layout">
-          <div className="art-frame">
-            <Image
+          <div className="art-frame" data-cursor-label={es ? "VER" : "VIEW"}>
+            <img
               src={workImage(work)}
               alt={work.alt[locale]}
-              width={1000}
-              height={1000}
-              sizes="(max-width: 900px) 94vw, 60vw"
               style={{ width: "100%", height: "auto" }}
-              priority
             />
           </div>
           <div className="work-meta">
             <p className="chapter-kicker">{categoryLabels[work.category]?.[locale] ?? work.category}</p>
-            <h1 style={{ fontWeight: 400, fontSize: "1.8rem", marginTop: 0 }}>{label}</h1>
+            <h1>{label}</h1>
             <dl>
               <dt>{t.work.metaYear[locale]}</dt>
               <dd>{work.year ?? unknown}</dd>
@@ -59,13 +53,13 @@ export default function WorkPage({ work, locale }: { work: Artwork; locale: Loca
                 {es ? "Encargar una obra similar" : "Commission a similar work"}
               </Link>
             </div>
-            <p style={{ marginTop: "2rem" }}>
+            <p style={{ marginTop: "var(--sp-4)" }}>
               <Link href={routes.gallery[locale]}>{t.work.back[locale]}</Link>
             </p>
           </div>
         </div>
-      </main>
+      </div>
       <SiteFooter locale={locale} />
-    </>
+    </SubPageShell>
   );
 }

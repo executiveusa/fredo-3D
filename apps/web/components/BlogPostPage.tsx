@@ -4,7 +4,7 @@ import type { BlogPost } from "../lib/blog";
 import { collectionLabels, formatDate } from "../lib/blog";
 import { galleryWorks } from "../lib/content";
 import { routes, t } from "../lib/i18n";
-import SiteNav from "./SiteNav";
+import SubPageShell from "./SubPageShell";
 import SiteFooter from "./SiteFooter";
 import ArtCard from "./ArtCard";
 
@@ -17,9 +17,8 @@ function renderBlock(block: string, i: number) {
 export default function BlogPostPage({ post, locale }: { post: BlogPost; locale: Locale }) {
   const related = galleryWorks().filter((w) => post.relatedWorks.includes(w.id));
   return (
-    <>
-      <SiteNav locale={locale} />
-      <main id="main" className="container">
+    <SubPageShell locale={locale}>
+      <div className="container" style={{ paddingTop: "var(--sp-7)" }}>
         <article className="post-body">
           <div className="page-head" style={{ paddingBottom: 0 }}>
             <span className="post-collection">{collectionLabels[post.collection]?.[locale] ?? post.collection}</span>
@@ -50,12 +49,12 @@ export default function BlogPostPage({ post, locale }: { post: BlogPost; locale:
               </div>
             </>
           )}
-          <p style={{ marginTop: "2.5rem" }}>
+          <p style={{ marginTop: "var(--sp-5)" }}>
             <Link href={routes.blog[locale]}>{t.blog.back[locale]}</Link>
           </p>
         </article>
-      </main>
+      </div>
       <SiteFooter locale={locale} />
-    </>
+    </SubPageShell>
   );
 }
