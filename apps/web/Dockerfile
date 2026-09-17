@@ -7,7 +7,7 @@
 #   docker build -f apps/web/Dockerfile -t fredo3d-web:<sha>  <repo-root>
 
 # ---------- 1. deps ----------
-FROM node:22-alpine AS deps
+FROM node:26-alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
@@ -16,7 +16,7 @@ COPY apps/web/package.json apps/web/package-lock.json* ./
 RUN npm ci --no-audit --no-fund
 
 # ---------- 2. builder ----------
-FROM node:22-alpine AS builder
+FROM node:26-alpine AS builder
 WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
@@ -35,7 +35,7 @@ COPY content/ ./../../content/
 RUN npm run build
 
 # ---------- 3. runner ----------
-FROM node:22-alpine AS runner
+FROM node:26-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV=production
